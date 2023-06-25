@@ -40,18 +40,21 @@ export default function Page() {
   useEffect(() => {
     currenciesTable.toArray()
       .then(async (rows) => {
-        if (!rows.length) {
-          await updateCurrencies()
-        } else {
+        if (rows.length) {
           setCurrencies(rows)
-
-          // update currencies if last update was more than 24 hours ago
-          const isOutdated = updatedDate && (new Date().getTime() - updatedDate.value.getTime()) > 24 * 60 * 60 * 1000
-          if (isOutdated) {
-            await updateCurrencies()
-          }
         }
       })
+  }, [])
+
+  useEffect(() => {
+    (async function() {
+      // update currencies if last update was more than 24 hours ago
+      const updatedDate = await configTable.get('updatedDate')
+      const isOutdated = !updatedDate || new Date().getTime() - updatedDate.value.getTime() > 24 * 60 * 60 * 1000
+      if (isOutdated) {
+        await updateCurrencies()
+      }
+    })()
   }, [])
 
   const updateCurrencies = async () => {
@@ -126,7 +129,7 @@ export default function Page() {
         </div>
         <footer className={styles.footer}>
           <div className={styles.caption}>
-            <div>Last updated: {updatedDate?.value.toLocaleDateString()}</div>
+            {updatedDate && <div>Last updated: {updatedDate?.value.toLocaleDateString()}</div>}
             {isUpdating && <div>Updating...</div>}
           </div>
         </footer>
