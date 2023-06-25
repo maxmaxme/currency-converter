@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.header {
+  padding: 0 0 16px;
+}
+
+.title {
+  font-size: 34px;
+  line-height: 41px;
+  font-weight: bold;
+}
+
+.sub-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.caption {
+  color: rgba(60, 60, 67, 0.6);
+}
+
+.updateButton {
+  margin-top: 4px;
+  border: 0;
+  background: transparent;
+  color: #007AFF;
+}
+
+.addButton {
+  margin-top: 8px;
+}

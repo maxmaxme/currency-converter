@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  padding: 16px;
+  width: 100%;
+  background: #fff;
+}
+
+.swipeToDelete {
+  border-radius: 8px;
+}
+
+.amount {
+  text-align: right;
+  margin-left: auto;
+  border: 0;
+  font-size: 32px;
+  width: 100%;
+}
+
+.amount:focus {
+  outline: none;
+}
+
+.amount:disabled {
+  background: transparent;
+  color: inherit;
+}
+
+.amount::-webkit-outer-spin-button,
+.amount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
