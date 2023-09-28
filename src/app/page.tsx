@@ -10,17 +10,21 @@ import {ICurrency, IItem} from "@/types/db";
 import {useEffect, useState} from "react";
 import localFont from 'next/font/local'
 import cn from 'classnames'
+// @ts-ignore
+import {getEmojiByCurrencyCode} from "country-currency-emoji-flags";
 
 const getCurrencies = async (): Promise<ICurrency[]> => {
-  const {rates} = await fetch('https://api.exchangerate.host/latest', {
+  const {eur} = await fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json', {
     // disable offline caching
     cache: 'no-cache',
-  }).then(r => r.json())
+  }).then(r => r.json() as unknown as { date: 'string', 'eur': Record<string, number> })
 
-  return Object.entries(rates).map(([code, rate]) => ({
-    code,
-    rate: Number(rate),
-  }))
+  return Object.entries(eur)
+    .filter(([code]) => getEmojiByCurrencyCode(code)) // filter out currencies without flag
+    .map(([code, rate]) => ({
+      code: code.toUpperCase(),
+      rate: Number(rate),
+    }))
 }
 
 const font = localFont({
@@ -47,7 +51,7 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
-    (async function() {
+    (async function () {
       // update currencies if last update was more than 24 hours ago
       const updatedDate = await configTable.get('updatedDate')
       const isOutdated = !updatedDate || new Date().getTime() - updatedDate.value.getTime() > 24 * 60 * 60 * 1000
