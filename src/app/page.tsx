@@ -14,7 +14,7 @@ import cn from 'classnames'
 import {getEmojiByCurrencyCode} from "country-currency-emoji-flags";
 
 const getCurrencies = async (): Promise<ICurrency[]> => {
-  const {eur} = await fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json', {
+  const {eur} = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json', {
     // disable offline caching
     cache: 'no-cache',
   }).then(r => r.json() as unknown as { date: 'string', 'eur': Record<string, number> })
