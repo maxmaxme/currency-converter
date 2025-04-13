@@ -1,6 +1,6 @@
 import {ICurrency} from "@/types/db";
 import styles from './index.module.css'
-// @ts-ignore
+// @ts-expect-error no types in country-currency-emoji-flags
 import {getEmojiByCurrencyCode} from 'country-currency-emoji-flags';
 
 type Props = {

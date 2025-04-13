@@ -10,7 +10,7 @@ import {ICurrency, IItem} from "@/types/db";
 import {useEffect, useState} from "react";
 import localFont from 'next/font/local'
 import cn from 'classnames'
-// @ts-ignore
+// @ts-expect-error no types in country-currency-emoji-flags
 import {getEmojiByCurrencyCode} from "country-currency-emoji-flags";
 
 const getCurrencies = async (): Promise<ICurrency[]> => {

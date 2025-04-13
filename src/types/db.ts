@@ -11,5 +11,6 @@ export interface ICurrency {
 
 export interface IConfig {
   id: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
 }
