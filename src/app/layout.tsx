@@ -4,8 +4,6 @@ import {Metadata} from "next";
 import './globals.css'
 export const metadata: Metadata = {
   title: 'Currency converter',
-  themeColor: '#F2F2F7',
-  viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover',
   manifest: '/manifest.json',
   icons: [
     {
@@ -22,10 +20,21 @@ export const metadata: Metadata = {
   description: 'Currency converter',
 }
 
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#F2F2F7',
+}
+
 export default function RootLayout({children}: { children: ReactNode }) {
   return (
     <html lang="en">
     <head>
+      <title>Currency converter</title>
       <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"></link>
       <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"></link>
     </head>
