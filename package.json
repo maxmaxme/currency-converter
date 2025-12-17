@@ -19,7 +19,7 @@
     "dexie": "^4.0.11",
     "dexie-react-hooks": "^1.1.7",
     "eslint": "9.24.0",
-    "next": "15.3.0",
+    "next": "15.3.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-swipe-to-delete-ios": "^2.1.0",
