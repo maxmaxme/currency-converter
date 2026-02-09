@@ -3,7 +3,7 @@ import styles from './layout.module.css'
 import {Metadata} from "next";
 import './globals.css'
 export const metadata: Metadata = {
-  title: 'Currency converter',
+  title: 'Converter',
   manifest: '/manifest.json',
   icons: [
     {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       type: 'image/png',
     },
   ],
-  description: 'Currency converter',
+  description: 'Converter',
 }
 
 import type { Viewport } from 'next'
@@ -34,7 +34,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
   return (
     <html lang="en">
     <head>
-      <title>Currency converter</title>
+      <title>Converter</title>
       <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"></link>
       <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"></link>
     </head>

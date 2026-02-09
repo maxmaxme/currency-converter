@@ -6,6 +6,7 @@ import cn from "classnames";
 type Props = {
   children: React.ReactNode;
   onClick: () => void;
+  variant?: 'primary' | 'muted';
 }
 
 const font = localFont({
@@ -13,9 +14,11 @@ const font = localFont({
 })
 
 export function Button(props: Props) {
+  const variantClass = props.variant === 'muted' ? styles.muted : styles.primary
+
   return (
     <button
-      className={cn(font.className, styles.button)}
+      className={cn(font.className, styles.button, variantClass)}
       onClick={props.onClick}
     >
       {props.children}

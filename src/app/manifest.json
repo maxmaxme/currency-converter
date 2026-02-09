@@ -4,8 +4,8 @@
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/?pwa=1",
-  "name": "Currency converter",
-  "short_name": "Currency converter",
+  "name": "Converter",
+  "short_name": "Converter",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

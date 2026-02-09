@@ -1,4 +1,4 @@
-# Currency converter
+# Converter
 
 ### Contribute:
 

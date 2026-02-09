@@ -10,6 +10,7 @@ import {ICurrency, IItem} from "@/types/db";
 import {useEffect, useState} from "react";
 import localFont from 'next/font/local'
 import cn from 'classnames'
+import {UnitsSection} from "@/components/UnitsSection";
 // @ts-expect-error no types in country-currency-emoji-flags
 import {getEmojiByCurrencyCode} from "country-currency-emoji-flags";
 
@@ -39,6 +40,7 @@ export default function Page() {
   const items = useLiveQuery(() => itemsTable.toArray()) ?? []
   const updatedDate = useLiveQuery(() => configTable.get('updatedDate')) ?? undefined
   const baseAmount = useLiveQuery(() => configTable.get('baseAmount').then(row => row?.value)) ?? 0
+  const activeTab = useLiveQuery(async () => (await configTable.get('activeTab'))?.value ?? 'currency') ?? 'currency'
   const [isUpdating, setIsUpdating] = useState(false)
 
   useEffect(() => {
@@ -83,6 +85,10 @@ export default function Page() {
     await configTable.put({id: 'baseAmount', value: amount})
   }
 
+  const setActiveTab = async (value: 'currency' | 'units') => {
+    await configTable.put({id: 'activeTab', value})
+  }
+
   const handleAddItem = async () => {
     // find first currency that is not in items
     const currency = currencies.find(({code}) => !items.some(item => item.currency === code))?.code ?? currencies[0].code
@@ -114,29 +120,52 @@ export default function Page() {
     <div className={font.className}>
       <CurrencyContext.Provider value={currencies}>
         <header className={styles.header}>
-          <h1 className={cn([styles.title, fontBold.className])}>Currency converter</h1>
+          <h1 className={cn([styles.title, fontBold.className])}>Converter</h1>
         </header>
+        <main className={styles.tabs}>
+          <button
+            className={cn(styles.tab, activeTab === 'currency' && styles.tabActive)}
+            onClick={() => setActiveTab('currency')}
+          >
+            Currency
+          </button>
+          <button
+            className={cn(styles.tab, activeTab === 'units' && styles.tabActive)}
+            onClick={() => setActiveTab('units')}
+          >
+            USA Units
+          </button>
+        </main>
         <div className={styles.container}>
-          {items.map((item) => (
-            <CurrencyItem
-              currency={item.currency}
-              amount={getAmount(item)}
-              key={item.id}
-              handleCurrencyChange={(currency) => handleCurrencyChange(item.id!, currency)}
-              handleAmountChange={(amount) => handleAmountChange(item.id!, amount)}
-              handleDelete={() => handleDelete(item.id!)}
-            />
-          ))}
-          <div className={styles.addButton}>
-            <Button onClick={handleAddItem}>Add currency</Button>
-          </div>
+          {activeTab === 'currency' && (
+            <>
+              {items.map((item) => (
+                <CurrencyItem
+                  currency={item.currency}
+                  amount={getAmount(item)}
+                  key={item.id}
+                  handleCurrencyChange={(currency) => handleCurrencyChange(item.id!, currency)}
+                  handleAmountChange={(amount) => handleAmountChange(item.id!, amount)}
+                  handleDelete={() => handleDelete(item.id!)}
+                />
+              ))}
+              <div className={styles.addButton}>
+                <Button onClick={handleAddItem}>Add currency</Button>
+              </div>
+            </>
+          )}
+          {activeTab === 'units' && (
+            <UnitsSection />
+          )}
         </div>
-        <footer className={styles.footer}>
-          <div className={styles.caption}>
-            {updatedDate && <div>Last updated: {updatedDate?.value.toLocaleDateString()}</div>}
-            {isUpdating && <div>Updating...</div>}
-          </div>
-        </footer>
+        {activeTab === 'currency' && (
+          <footer className={styles.footer}>
+            <div className={styles.caption}>
+              {updatedDate && <div>Last updated: {updatedDate?.value.toLocaleDateString()}</div>}
+              {isUpdating && <div>Updating...</div>}
+            </div>
+          </footer>
+        )}
       </CurrencyContext.Provider>
     </div>
   )
