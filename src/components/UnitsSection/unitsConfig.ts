@@ -12,18 +12,18 @@ export type UnitDefinition = {
 
 export const UNIT_DEFINITIONS: UnitDefinition[] = [
   {
-    id: 'metersToFeet',
-    leftLabel: 'Meters',
-    rightLabel: 'Feet',
-    leftToRight: (value: number) => value * 3.28084,
-    rightToLeft: (value: number) => value / 3.28084,
-  },
-  {
     id: 'milesToKm',
     leftLabel: 'Miles',
     rightLabel: 'Kilometers',
     leftToRight: (value: number) => value * 1.60934,
     rightToLeft: (value: number) => value / 1.60934,
+  },
+  {
+    id: 'kilogramsToPounds',
+    leftLabel: 'Kilograms',
+    rightLabel: 'Pounds',
+    leftToRight: (value: number) => value * 2.20462,
+    rightToLeft: (value: number) => value / 2.20462,
   },
   {
     id: 'litersToGallons',
@@ -41,11 +41,11 @@ export const UNIT_DEFINITIONS: UnitDefinition[] = [
     precision: 1,
   },
   {
-    id: 'kilogramsToPounds',
-    leftLabel: 'Kilograms',
-    rightLabel: 'Pounds',
-    leftToRight: (value: number) => value * 2.20462,
-    rightToLeft: (value: number) => value / 2.20462,
+    id: 'metersToFeet',
+    leftLabel: 'Meters',
+    rightLabel: 'Feet',
+    leftToRight: (value: number) => value * 3.28084,
+    rightToLeft: (value: number) => value / 3.28084,
   },
   {
     id: 'barToPsi',

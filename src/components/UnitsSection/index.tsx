@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect, useMemo} from "react";
 import {useLiveQuery} from "dexie-react-hooks";
 import {configTable} from "@/db";
 import {UnitsBlock} from "@/components/UnitsBlock";
@@ -33,7 +33,7 @@ export function UnitsSection() {
     await configTable.put({id: 'units.order', value: order})
   }
 
-  const setUnitValues = async (unitId: string, values: UnitValues) => {
+  const setUnitValues = useCallback(async (unitId: string, values: UnitValues) => {
     await configTable.put({
       id: 'units.values',
       value: {
@@ -41,13 +41,22 @@ export function UnitsSection() {
         [unitId]: values
       }
     })
-  }
+  }, [unitsValues])
 
-  const units = UNIT_DEFINITIONS.map((unit) => ({
-    ...unit,
-    values: unitsValues[unit.id] ?? unit.defaultValues ?? {left: 0, right: 0},
-    onValuesChange: (values: UnitValues) => setUnitValues(unit.id, values),
-  }))
+  const unitHandlers = useMemo(() => {
+    return UNIT_DEFINITIONS.reduce<Record<string, (values: UnitValues) => void>>((acc, unit) => {
+      acc[unit.id] = (values) => setUnitValues(unit.id, values)
+      return acc
+    }, {})
+  }, [setUnitValues])
+
+  const units = useMemo(() => {
+    return UNIT_DEFINITIONS.map((unit) => ({
+      ...unit,
+      values: unitsValues[unit.id] ?? unit.defaultValues ?? {left: 0, right: 0},
+      onValuesChange: unitHandlers[unit.id],
+    }))
+  }, [unitHandlers, unitsValues])
 
   return (
     <UnitsBlock
