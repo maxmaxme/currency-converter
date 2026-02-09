@@ -2,7 +2,7 @@
   display: flex;
   padding: 16px;
   width: 100%;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .swipeToDelete {
@@ -15,6 +15,8 @@
   border: 0;
   font-size: 32px;
   width: 100%;
+  color: inherit;
+  background: transparent;
 }
 
 .amount:focus {

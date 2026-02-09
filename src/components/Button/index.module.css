@@ -10,17 +10,17 @@
 
 .primary {
   padding: 16px 16px;
-  background: #007AFF;
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 .primary:hover {
-  background: #006fe6;
+  background: var(--color-accent-hover);
   cursor: pointer;
 }
 
 .muted {
-  color: rgba(60, 60, 67, 0.6);
+  color: var(--color-text-tertiary);
   font-size: 12px;
   line-height: 16px;
   padding: 6px 10px;
@@ -28,6 +28,6 @@
 }
 
 .muted:hover {
-  color: rgba(60, 60, 67, 0.8);
+  color: var(--color-text-muted);
   cursor: pointer;
 }

@@ -4,7 +4,7 @@
   gap: 12px;
   padding: 16px;
   width: 100%;
-  background: #fff;
+  background: var(--color-surface);
   border-radius: 8px;
 }
 
@@ -27,6 +27,8 @@
   border: 0;
   font-size: 28px;
   width: 100%;
+  color: inherit;
+  background: transparent;
 }
 
 .amount:focus {
