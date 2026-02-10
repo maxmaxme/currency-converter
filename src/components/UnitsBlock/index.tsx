@@ -10,6 +10,7 @@ type Props = {
     id: string;
     leftLabel: string;
     rightLabel: string;
+    icon?: string;
     leftToRight: (value: number) => number;
     rightToLeft: (value: number) => number;
     values: { left: number; right: number };
@@ -122,6 +123,7 @@ export function UnitsBlock(props: Props) {
           <UnitConverterItem
             leftLabel={unit.leftLabel}
             rightLabel={unit.rightLabel}
+            icon={unit.icon}
             leftToRight={unit.leftToRight}
             rightToLeft={unit.rightToLeft}
             precision={unit.precision}

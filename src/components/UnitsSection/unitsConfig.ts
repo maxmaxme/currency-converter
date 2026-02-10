@@ -4,6 +4,7 @@ export type UnitDefinition = {
   id: string;
   leftLabel: string;
   rightLabel: string;
+  icon?: string;
   leftToRight: (value: number) => number;
   rightToLeft: (value: number) => number;
   precision?: number;
@@ -13,44 +14,50 @@ export type UnitDefinition = {
 export const UNIT_DEFINITIONS: UnitDefinition[] = [
   {
     id: 'milesToKm',
-    leftLabel: 'Miles',
-    rightLabel: 'Kilometers',
+    icon: '🛣️',
+    leftLabel: 'mi',
+    rightLabel: 'km',
     leftToRight: (value: number) => value * 1.60934,
     rightToLeft: (value: number) => value / 1.60934,
   },
   {
     id: 'kilogramsToPounds',
-    leftLabel: 'Kilograms',
-    rightLabel: 'Pounds',
+    icon: '⚖️',
+    leftLabel: 'kg',
+    rightLabel: 'lb',
     leftToRight: (value: number) => value * 2.20462,
     rightToLeft: (value: number) => value / 2.20462,
   },
   {
     id: 'litersToGallons',
-    leftLabel: 'Liters',
-    rightLabel: 'Gallons',
+    icon: '🧴',
+    leftLabel: 'L',
+    rightLabel: 'gal',
     leftToRight: (value: number) => value * 0.264172,
     rightToLeft: (value: number) => value / 0.264172,
   },
   {
     id: 'celsiusToFahrenheit',
-    leftLabel: 'Celsius',
-    rightLabel: 'Fahrenheit',
+    icon: '🌡️',
+    leftLabel: '°C',
+    rightLabel: '°F',
     leftToRight: (value: number) => (value * 9) / 5 + 32,
     rightToLeft: (value: number) => (value - 32) * 5 / 9,
     precision: 1,
   },
   {
     id: 'metersToFeet',
-    leftLabel: 'Meters',
-    rightLabel: 'Feet',
+    icon: '📏',
+    leftLabel: 'm',
+    rightLabel: 'ft',
     leftToRight: (value: number) => value * 3.28084,
     rightToLeft: (value: number) => value / 3.28084,
   },
   {
     id: 'barToPsi',
-    leftLabel: 'Bar',
-    rightLabel: 'PSI',
+    icon: '🧪',
+    leftLabel: 'bar',
+    rightLabel: 'psi',
     leftToRight: (value: number) => value * 14.5038,
     rightToLeft: (value: number) => value / 14.5038,
   },

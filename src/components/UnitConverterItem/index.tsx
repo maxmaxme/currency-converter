@@ -4,6 +4,7 @@ import React from "react";
 type Props = {
   leftLabel: string;
   rightLabel: string;
+  icon?: string;
   leftToRight: (value: number) => number;
   rightToLeft: (value: number) => number;
   leftValue: number;
@@ -57,10 +58,8 @@ export function UnitConverterItem(props: Props) {
 
   return (
     <div className={styles.item}>
+      {props.icon && <span className={styles.icon}>{props.icon}</span>}
       <div className={styles.row}>
-        <div className={styles.label}>
-          <span>{props.leftLabel}</span>
-        </div>
         <input
           className={styles.amount}
           type="number"
@@ -69,11 +68,11 @@ export function UnitConverterItem(props: Props) {
           onClick={handleInputClick}
           onBlur={handleLeftBlur}
         />
+        <div className={styles.label}>
+          <span>{props.leftLabel}</span>
+        </div>
       </div>
       <div className={styles.row}>
-        <div className={styles.label}>
-          <span>{props.rightLabel}</span>
-        </div>
         <input
           className={styles.amount}
           type="number"
@@ -82,6 +81,9 @@ export function UnitConverterItem(props: Props) {
           onClick={handleInputClick}
           onBlur={handleRightBlur}
         />
+        <div className={styles.label}>
+          <span>{props.rightLabel}</span>
+        </div>
       </div>
     </div>
   )
