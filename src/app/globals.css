@@ -26,6 +26,7 @@ body {
   --color-tab-bg: #F2F2F7;
   --color-tab-active-bg: #FFFFFF;
   --color-shadow: rgba(0, 0, 0, 0.08);
+  --select-chevron: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%233C3C43' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,5 +45,6 @@ body {
     --color-tab-bg: #1C1C1E;
     --color-tab-active-bg: #2C2C2E;
     --color-shadow: rgba(0, 0, 0, 0.4);
+    --select-chevron: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23EBEBF5' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
 }

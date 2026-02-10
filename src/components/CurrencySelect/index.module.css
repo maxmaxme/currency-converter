@@ -3,6 +3,13 @@
   border: 0;
   background: transparent;
   color: inherit;
+  padding-right: 24px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: var(--select-chevron);
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 10px 6px;
 }
 
 .currency:focus {
