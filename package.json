@@ -8,7 +8,7 @@
     "dev": "next dev --webpack --experimental-https",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
     "@serwist/next": "^9.5.5",
