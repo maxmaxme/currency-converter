@@ -57,29 +57,26 @@ export default function Page() {
       // update currencies if last update was more than 24 hours ago
       const updatedDate = await configTable.get('updatedDate')
       const isOutdated = !updatedDate || new Date().getTime() - updatedDate.value.getTime() > 24 * 60 * 60 * 1000
-      if (isOutdated) {
-        await updateCurrencies()
+      if (!isOutdated) {
+        return
       }
+      setIsUpdating(true)
+      await getCurrencies()
+        .then(async currencies => {
+          await currenciesTable.clear();
+          await Promise.all([
+            currenciesTable.bulkAdd(currencies),
+            configTable.put({id: 'updatedDate', value: new Date()})
+          ])
+          return currencies
+        })
+        .then(setCurrencies)
+        .catch((e) => {
+          alert('Failed to update exchange rates: ' + e.message)
+        })
+        .finally(() => setIsUpdating(false))
     })()
   }, [])
-
-  const updateCurrencies = async () => {
-    setIsUpdating(true)
-    return getCurrencies()
-      .then(async currencies => {
-        await currenciesTable.clear();
-        await Promise.all([
-          currenciesTable.bulkAdd(currencies),
-          configTable.put({id: 'updatedDate', value: new Date()})
-        ])
-        return currencies
-      })
-      .then(setCurrencies)
-      .catch((e) => {
-        alert('Failed to update exchange rates: ' + e.message)
-      })
-      .finally(() => setIsUpdating(false))
-  }
 
   const setBaseAmount = async (amount: number) => {
     await configTable.put({id: 'baseAmount', value: amount})
