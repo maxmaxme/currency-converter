@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import styles from './index.module.css'
 import {UnitConverterItem} from "@/components/UnitConverterItem";
 import cn from "classnames";
@@ -39,7 +39,7 @@ export function UnitsBlock(props: Props) {
     .map((id) => props.units.find((unit) => unit.id === id))
     .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit))
 
-  const moveUnit = useCallback((fromId: string, toId: string) => {
+  const moveUnit = (fromId: string, toId: string) => {
     if (fromId === toId) {
       return
     }
@@ -52,9 +52,9 @@ export function UnitsBlock(props: Props) {
     nextOrder.splice(fromIndex, 1)
     nextOrder.splice(toIndex, 0, fromId)
     props.onOrderChange(nextOrder)
-  }, [baseOrder, props.onOrderChange])
+  }
 
-  const moveUnitLocal = useCallback((fromId: string, toId: string) => {
+  const moveUnitLocal = (fromId: string, toId: string) => {
     if (fromId === toId) {
       return
     }
@@ -67,9 +67,9 @@ export function UnitsBlock(props: Props) {
     nextOrder.splice(fromIndex, 1)
     nextOrder.splice(toIndex, 0, fromId)
     setPreviewOrder(nextOrder)
-  }, [baseOrder, previewOrder])
+  }
 
-  const handleDragStart = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     const unitId = event.currentTarget.dataset.unitId
     if (!unitId) {
       return
@@ -77,14 +77,14 @@ export function UnitsBlock(props: Props) {
     event.dataTransfer.setData('text/plain', unitId)
     setDraggingId(unitId)
     setPreviewOrder(baseOrder)
-  }, [baseOrder])
+  }
 
-  const handleDragEnd = useCallback(() => {
+  const handleDragEnd = () => {
     setDraggingId(null)
     setPreviewOrder([])
-  }, [])
+  }
 
-  const handleDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
     if (!draggingId) {
       return
@@ -94,9 +94,9 @@ export function UnitsBlock(props: Props) {
       return
     }
     moveUnitLocal(draggingId, unitId)
-  }, [draggingId, moveUnitLocal])
+  }
 
-  const handleDrop = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     const toId = event.currentTarget.dataset.unitId
     const fromId = event.dataTransfer.getData('text/plain')
     if (!toId || !fromId) {
@@ -105,7 +105,7 @@ export function UnitsBlock(props: Props) {
     moveUnit(fromId, toId)
     setDraggingId(null)
     setPreviewOrder([])
-  }, [moveUnit])
+  }
 
   return (
     <div className={styles.units}>
