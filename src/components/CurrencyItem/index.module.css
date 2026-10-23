@@ -27,9 +27,3 @@
   background: transparent;
   color: inherit;
 }
-
-.amount::-webkit-outer-spin-button,
-.amount::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
