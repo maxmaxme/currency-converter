@@ -25,7 +25,6 @@ import type { Viewport } from 'next'
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  userScalable: false,
   viewportFit: 'cover',
   themeColor: [
     {media: '(prefers-color-scheme: light)', color: '#F2F2F7'},

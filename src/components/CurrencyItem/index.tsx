@@ -38,6 +38,7 @@ export function CurrencyItem(props: Props) {
         onDelete={props.handleDelete ?? (() => {
         })}
         height={70}
+        deleteColor="#D70015"
       >
         <div className={styles.item}>
           <CurrencySelect
@@ -50,6 +51,7 @@ export function CurrencyItem(props: Props) {
             className={styles.amount}
             type="text"
             inputMode="decimal"
+            aria-label={`Amount in ${props.currency}`}
             value={draft ?? props.amount}
             onClick={handleInputClick}
             onChange={handleInputChange}

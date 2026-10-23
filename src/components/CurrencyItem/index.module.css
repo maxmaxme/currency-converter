@@ -6,7 +6,12 @@
 }
 
 .swipeToDelete {
-  border-radius: 8px;
+  border-radius: 20px;
+}
+
+/* the red layer sits under the whole card and bleeds through its anti-aliased edges */
+.swipeToDelete :global(.delete) {
+  inset: 1px;
 }
 
 .amount {

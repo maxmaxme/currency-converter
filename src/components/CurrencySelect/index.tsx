@@ -17,6 +17,7 @@ export function CurrencySelect(props: Props) {
   return (
     <select
       className={styles.currency}
+      aria-label="Currency"
       value={props.value}
       onChange={event => props.onChange?.(event.target.value)}
       disabled={!props.onChange}

@@ -63,6 +63,7 @@ export function UnitConverterItem(props: Props) {
         <input
           className={styles.amount}
           type="number"
+          aria-label={props.leftLabel}
           value={props.leftValue}
           onChange={(event) => handleLeftChange(Number(event.target.value))}
           onClick={handleInputClick}
@@ -76,6 +77,7 @@ export function UnitConverterItem(props: Props) {
         <input
           className={styles.amount}
           type="number"
+          aria-label={props.rightLabel}
           value={props.rightValue}
           onChange={(event) => handleRightChange(Number(event.target.value))}
           onClick={handleInputClick}
