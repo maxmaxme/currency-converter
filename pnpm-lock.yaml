@@ -31,7 +31,7 @@ importers:
         version: 4.3.0
       dexie-react-hooks:
         specifier: ^4.2.0
-        version: 4.2.0(@types/react@19.2.13)(dexie@4.3.0)(react@19.2.4)
+        version: 4.4.0(dexie@4.3.0)(react@19.2.4)
       eslint:
         specifier: 10.0.0
         version: 10.0.0
@@ -910,10 +910,9 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
-  dexie-react-hooks@4.2.0:
-    resolution: {integrity: sha512-u7KqTX9JpBQK8+tEyA9X0yMGXlSCsbm5AU64N6gjvGk/IutYDpLBInMYEAEC83s3qhIvryFS+W+sqLZUBEvePQ==}
+  dexie-react-hooks@4.4.0:
+    resolution: {integrity: sha512-ObLXBS5+4BJU8vtSvBx6b9fY6zZYgniAtwxzjCHsUQadgbqYN6935X2/1TWw4Rf2N1aZV1io5/ziox4vKuxABA==}
     peerDependencies:
-      '@types/react': '>=16'
       dexie: '>=4.2.0-alpha.1 <5.0.0'
       react: '>=16'
 
@@ -2771,9 +2770,8 @@ snapshots:
   detect-libc@2.1.2:
     optional: true
 
-  dexie-react-hooks@4.2.0(@types/react@19.2.13)(dexie@4.3.0)(react@19.2.4):
+  dexie-react-hooks@4.4.0(dexie@4.3.0)(react@19.2.4):
     dependencies:
-      '@types/react': 19.2.13
       dexie: 4.3.0
       react: 19.2.4
 
